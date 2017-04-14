@@ -6,13 +6,10 @@
 #
 # Script criado para que o usuário possa digitar o horário de desligamento do sistema
 
-if zenity --entry \
-	--title="Desligar o Sistema" \
-	--text="Em horário deseja desligar o sistema:" \
-	--entry-text "Digite a Hora"
-  then echo $hora
-  #sudo shutdown -h $hora | 
-  ENTRY=`zenity --title "Digite sua senha" --password`
+
+hora=$(zenity --title="Desligamento do sistema" --text "Em que horário deseja desligar?" --entry)
+
+	sudo shutdown -h $hora | ENTRY=`zenity --title "Digite sua senha" --password`
+
+zenity --info --title="Desligamento do sistema" --text="O sistema será desligado às $hora"
 	
-  	else echo "$hora"
-fi
