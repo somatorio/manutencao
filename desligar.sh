@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Criado por Eduardo Schuh Pereira
+# Criado por Eduardo Schuh Pereira (com o auxilio de https://t.me/shellbr)
 # Dia 13/04/2017
 # Última edição 13/04/2017
 #
@@ -13,7 +13,10 @@ hora=$(zenity --title="Desligamento do sistema" --text "Em quanto tempo deseja d
 	zenity --info --title="Desligamento do sistema" --text="Tempo restante: $hora"
 
 # Converte a hora digitada em segundos
-segundos=$(date -d "1970-01-01 $(date +%T) UTC" +%s)
+entradasegundos=$(date -d "1970-01-01 $hora UTC" +%s)
+atualsegundos=$(date -d "1970-01-01 $(date +%T) UTC" +%s)
+segundos=$(echo "$entradasegundos - $atualsegundos" | bc)
+
 
 while :; do
 	# Mostra na tela o tempo em segundos que resta para o desligamento do sistema
